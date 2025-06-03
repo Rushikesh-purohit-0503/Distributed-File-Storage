@@ -2,17 +2,23 @@ package main
 
 import (
 	"log"
+
 	"github.com/Rushikesh-purohit-0503/Distributed-file-system/p2p"
 )
 
 func main() {
 
-	tr := p2p.NewTCPTransport(":3000")
-	
-	if err := tr.ListenAndAccept(); err!=nil{
+	tcpopts := p2p.TCPTransportOpts{
+		ListenAddr:    ":3000",
+		HandshakeFunc: p2p.NOPHandshakeFunc,
+		Decoder:       p2p.GOBDecoder{},
+	}
+	tr := p2p.NewTCPTransport(tcpopts)
+
+	if err := tr.ListenAndAccept(); err != nil {
 		log.Fatal(err)
 	}
-	
-	select{}
-	
+
+	select {}
+
 }

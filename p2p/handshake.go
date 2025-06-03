@@ -1,7 +1,6 @@
 package p2p
 
-
-// HandshakeFunc is 
+// HandshakeFunc is
 type HandshakeFunc func(Peer) error
 
-func NOPHandshakeFunc(Peer) error { return nil}
+func NOPHandshakeFunc(Peer) error { return nil }
